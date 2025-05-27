@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- head -->
+
+<head th:replace="/customer/layout/header::head"></head>
+<!-- head -->
+
+
+<body>
+    <!-- Topbar Start -->
+    <div th:replace="/customer/layout/header::Topbar"></div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div th:replace="/customer/layout/header::Navbar"></div>
+    <!-- Navbar End -->
+
+    <!-- Shop Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <!-- Shop Product Start -->
+            <div class="col-lg-12 col-md-12">
+                <div class="row pb-3">
+
+
+
+                    <div th:each="product : ${products}" class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div
+                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" th:src="@{'/admin/assets/img/' + ${product.image_url}}"
+                                    alt="hidden">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 th:text="${product.getName()}" class="text-truncate mb-3"></h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>
+                                        <span th:text="${#numbers.formatDecimal(product.getPrice(),0,0)} + ' VND'"></span>
+                                    </h6>
+
+                                    <!-- <h6 class="text-muted ml-2"><del>$123.00</del></h6> -->
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center bg-light border text-center">
+                                <a th:href="@{/customer/product/{id}(id=${product.id})}"
+                                    class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi
+                                    tiết</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+
+    <!-- Footer Start -->
+    <div th:replace="/customer/layout/footer::footer"></div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- js Start -->
+    <div th:replace="/customer/layout/js::js"></div>
+    <!-- js End -->
+
+
+
+</body>
+
+</html>
